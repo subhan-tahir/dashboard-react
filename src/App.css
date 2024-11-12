@@ -1,3 +1,8 @@
+
+*{
+  box-sizing: border-box;
+}
+
 .open{
   transition: all 0.4s;
   height: auto;
@@ -13,7 +18,14 @@ width: 6px;
   height: 10px;
   border-radius: 12px;
   }
-
+  ::placeholder {
+    color: rgb(0, 0, 0) !important;
+    opacity: 1; /* Firefox */
+  }
+  
+  ::-ms-input-placeholder { /* Edge 12-18 */
+    color: red !important;
+  }
   .active{
     background-color: #ffffff12;
     color: #007aff;
@@ -72,4 +84,222 @@ width: 6px;
     transform: translateX(20px);
   }
   
+ /*Style for checkbox*/
+ .container {
+  display: block;
+  position: relative;
+  padding-left: 25px;
+  font-size: 16px;
  
+  font-weight:600;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display:flex;
+  align-items: center;
+  
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  left:0;
+  height: 16px;
+  width: 16px;
+  /* background-color: #d31717; */
+  display:flex;
+  align-items:center
+}
+
+/* On mouse-over, add a grey background color */
+/* .container:hover input ~ .checkmark {
+  /* background-color: #da1919; */
+/* } */
+
+/* When the checkbox is checked, add a blue background */
+/* .container input:checked ~ .checkmark { */
+  /* background-color: #a92626; */
+/* } */ 
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 6px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+/*bootstrap styling dropdown*/
+#dropdown-basic-button{
+  border-radius:0px;
+  padding:7px 5px 9px 5px;
+}
+
+.dropdown-box{
+  border-radius:0px !important;
+}
+
+input:focus label{
+  position: absolute;
+  top: 0;
+  color: blue;
+  background-color: black;
+}
+.tooltip-top{
+  
+  background-color: #ffffff !important;
+  
+}
+
+.popover-btn{
+background-color: rgb(0, 0, 0);
+color:rgb(255, 255, 255);
+padding:0px 9px 0px 9px;
+border-radius: 50%;
+border:3px solid rgb(0, 0, 0);
+font-weight:bold;
+}
+.popover-btn:hover{
+  background-color: #ffffff;
+  color:black;
+  border:3px solid rgb(0, 0, 0);
+  font-weight:bold !important;
+}
+
+.apexcharts-toolbar{
+  display: none !important;
+}
+.apexcharts-yaxistooltip{
+  display: none;
+}
+line.apexcharts-gridline{
+  display: none;
+}
+g path{
+  width:20px;
+}
+.apexcharts-xaxis-tick{
+  display:none;
+}
+#SvgjsLine1292{
+  display:none;
+}
+/* path.apexcharts-bar-area {
+fill:rgba(0,143,251,0.85);
+
+} */
+.apexcharts-canvas {
+  position: relative;
+  user-select: none;
+}
+.apexcharts-grid-row{
+  display: none;
+}
+.apexcharts-grid-borders{
+  display:none;
+}
+/* #SvgjsSvg1785{
+  transform: translate(0,30);
+}
+.apexcharts-svg{
+  transform: translate(0,10) !important;
+} */
+/* .line-chart{
+  transform: translate(0,50) !important;
+} */
+svg g.apexcharts-inner{
+  transform: translate(0,-50) !important;
+}
+
+ g.apexcharts-graphical{
+  transform: translate(20px,45px) !important;
+}
+
+.timeline-icon .icon{
+  
+  background-color: #d6eff9;
+  color:#33b0e0;
+  width: 20px;
+  height: 20px;
+  /* align-items:center; */
+  border-radius:50%;
+  /* padding: 5px; */
+  margin: 0 auto;
+  display:block;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  font-size:12px;
+}
+.timeline-icon{
+  position: relative;
+}
+.timeline-icon::after{
+  content:'';
+  position: absolute;
+  /* bottom: 0; */
+  left:8px;
+  background-color: #e5e5e5;
+  width:2.3px;
+  height:100% !important;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+#dropdown-timeline-button{
+  background-color: transparent;
+  color:black;
+  border: 0;
+}
+.more-btn-timeline{
+  background-color: #ffffff !important;
+}
+
+.dropdown-toggle::after {
+
+display: none;
+}
+
+.dropdown-item{
+  border-radius: 0 !important;
+}
+
+ /* @media only screen and (max-width:764px){  
+  .sideBar{
+    transform:translateX(-100%) !important;
+  }*/
+
+  /* html[data-sidenav-size=full] .sideBar {
+    margin-left: -275px;
+
+  } */
+  

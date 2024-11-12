@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaBars } from "react-icons/fa6";
 import usaFlag from '../assets/usa-flag.jpg'
 import itlyFlag from '../assets/italy-flag.jpg'
@@ -15,8 +15,12 @@ import { MdOutlineAccountCircle } from "react-icons/md";
 import { BiSupport } from "react-icons/bi";
 import { CiLock } from "react-icons/ci";
 import BasicElements from './BasicElements';
-const Header = ({btnToggle,sidebarToggle}) => {
-   
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleHandler } from '../redux/reducers/SideBarToggleSlice';
+
+
+const Header = ({ btnToggle, btnToggle1, sidebarToggle }) => {
+
     const [activedropdown, setActiveDropdown] = useState(false);
     const [activedropdown1, setActiveDropdown1] = useState(false);
 
@@ -88,7 +92,7 @@ const Header = ({btnToggle,sidebarToggle}) => {
 
     //     },
     // ];
-  
+
 
 
     let dropdownHandler = () => {
@@ -99,19 +103,25 @@ const Header = ({btnToggle,sidebarToggle}) => {
         setActiveDropdown1(!activedropdown1);
 
     }
-
+//     const toggling = useSelector((state) => state.sidebarToggle.value);
+// //   useSelector((state) => state.reducers.value);
+//     const dispatch = useDispatch();
     return (
         <>
-            <div className={` h-[80px]  border-b border-[#0003] fixed top-0  right-0 bg-[#FAF4F0] transition-all ease-in-out duration-500  ${sidebarToggle ? 'w-[100%]' : 'w-[78%]'}`}>
-                <div className='flex justify-between gap-4  items-center h-full px-6'>
+            <div className={` h-[80px] w-full z-[20]   border-b border-[#0003] sticky top-0   bg-[#FAF4F0]  transition-all ease-in-out duration-500`}>
+                <div className='flex  justify-between gap-4  items-center h-full px-6'>
                     <div className='flex gap-5 items-center'>
-                        <div><img src="src/assets/logo-sm.png" alt="" className='h-[30px] flex sm:hidden'/></div>
-                        <div onClick={btnToggle} className='text-[20px] cursor-pointer'><FaBars /></div>
-                        <div className='font-bold text-[20px] sm:flex hidden'>Dashboards</div>
+                        <div><img src="src/assets/logo-sm.png" alt="" className='h-[30px] flex sm:hidden' /></div>
+                        {/* appear this button above 640px  */}
+                        <div onClick={btnToggle} className='text-[20px] cursor-pointer flex'><FaBars /></div>
+                        {/* appear this button below 640px */}
+                        {/* <div onClick={btnToggle1} className='text-[20px] cursor-pointer sm:hidden flex'><FaBars /></div> */}
+
+                        <div className='font-bold text-[20px] sm:flex hidden select-none'>Dashboards</div>
                     </div>
                     <div>
 
-                        <ul className='flex items-center gap-5'>
+                        <ul className='flex items-center gap-3'>
 
 
                             <li onClick={dropdownHandler} className='relative flex items-center cursor-pointer gap-2'>
@@ -140,7 +150,7 @@ const Header = ({btnToggle,sidebarToggle}) => {
                                 <img src={person} alt="" className='w-[32px] rounded-full' />
                                 <span className='sm:flex hidden'>Adams</span>
                                 <span className='text-[14px] sm:flex hidden'><FaAngleDown /></span>
-                                <div className={`absolute top-[90px] right-6 py-2 bg-white  shadow-sm  flex flex-col gap-2 border w-[170px] transition-transform duration-500 ${activedropdown1? 'translate-y-[-10px]' : 'hidden'}`}>
+                                <div className={`absolute top-[90px] right-6 py-2 bg-white  shadow-sm  flex flex-col gap-2 border w-[170px] transition-transform duration-500 ${activedropdown1 ? 'translate-y-[-10px]' : 'hidden'}`}>
                                     {dropdownItems1.map((value, index) =>
                                         <li className='flex gap-3  items-center px-4 py-[5px]  hover:bg-[#e5e5e5]' key={index} >
                                             <span>{value.icon}</span>
@@ -154,7 +164,7 @@ const Header = ({btnToggle,sidebarToggle}) => {
                     </div>
                 </div>
             </div>
-                                
+
 
         </>
     )

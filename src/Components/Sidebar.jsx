@@ -127,9 +127,6 @@ const sideBarData = [
 
 const Sidebar = ({ sidebarToggle, device }) => {
   const [openDropdown, setOpenDropdown] = useState({ index: null, subIndex: null });
-  // let[sideBar,setSideBar] = useState(sideBarToggle1);
-  // const [active, setActive] = useState(false);
-
   const dropdownHandler = (subIndex, index) => {
     if (openDropdown.index === index && openDropdown.subIndex === subIndex) {
       setOpenDropdown({ index: null, subIndex: null });
@@ -140,15 +137,11 @@ const Sidebar = ({ sidebarToggle, device }) => {
     }
   };
 
-  // const useSelector((state)=>state.value)
-  // const reducers = useSelector((state)=>state.reducers.value);
+    // Function to close the sidebar
+    const closeSidebar = () => sidebarToggle(false);
+
   return (
-
-    // <div className='w-full p-4 flex flex-col justify-around items-center h-full '>    <div className={`sideBar sm:w-[300px] w-[275px] z-[50] fixed  top-0 h-screen overflow-y-auto  bg-black transition-all ease-in-out duration-300  ${sidebarToggle ? 'translate-x-[-100%] opacity-0' : 'translate-x-[0] opacity-[1]'} group`}>
-    // <div className=' p-4 flex flex-col justify-around items-center h-full '> 
-
     <>
-      {/* <div className={`sideBar  z-[100] fixed left-0  top-0 h-screen overflow-y-auto overflow-x-hidden bg-black transition-all   ease-in-out duration-300  ${sidebarToggle ? device === 'lg' ?'w-[80px]' :'w-[0]' : 'w-[285px]' }  */}
       <div className={`sideBar  z-[100] fixed left-0  top-0 h-screen overflow-y-auto overflow-x-hidden
          bg-black transition-all  group ease-in-out duration-300  ${sidebarToggle ? (device === 'lg' ? 'w-[80px]' : 'w-[0]') : 'w-[285px]'} `}>
 
@@ -158,7 +151,7 @@ const Sidebar = ({ sidebarToggle, device }) => {
         <div className=' mt-[70px]'>
           <ul className='text-white flex flex-col gap-2'>
             {sideBarData.map((sidebarItem, index) => (
-              <li key={index} className='flex flex-col gap-5'  >
+              <li key={index} className='flex flex-col gap-4'  >
 
                 <span className={`pt-0 px-6 font-bold ${sidebarToggle ? 'hidden' : 'flex'}`} >{sidebarItem.item}</span>
 
@@ -166,21 +159,20 @@ const Sidebar = ({ sidebarToggle, device }) => {
 
                 >
                   {sidebarItem.subOptions.map((sidebarOption, subIndex) => (
-                    <div key={subIndex} className={`p-2 px-4  flex flex-wrap items-center gap-3 cursor-pointer`} onClick={() => dropdownHandler(subIndex, index)}>
+                    <div>
+                    <div key={subIndex} className={`p-2 px-4  flex flex-wrap items-center gap-3 cursor-pointer`} onClick={() => dropdownHandler(subIndex, index)}
+                        >
 
-                      {sidebarOption.path ? <NavLink className={`flex p-2 -ml-2   w-full flex-wrap items-center gap-3 ${sidebarOption.path ? device == 'sm' ? 'w-0' : 'w-[275px]' : 'w-[275px]'}`} to={sidebarOption.path} onClick={() => {
-                        if (device === 'sm') {
-                          sidebarToggle();
-                        }
-                      }}><span className='text-[20px] '>{sidebarOption.icon}</span>
+                      {sidebarOption.path ? <NavLink className={`flex p-2 -ml-2   w-full flex-wrap items-center gap-3 ${sidebarOption.path ? device == 'sm' ? 'w-0' : 'w-[275px]' : 'w-[275px]'}`} to={sidebarOption.path}
+                  onClick={() => device === 'sm' && closeSidebar()}    ><span className='text-[20px] '>{sidebarOption.icon}</span>
                         <span className={`${sidebarToggle ? 'hidden' : 'flex'}`} >{sidebarOption.optionItem}</span></NavLink> : <> <span className='text-[20px] '>{sidebarOption.icon} </span><span className={`${sidebarToggle ? 'hidden' : 'flex'}`}>{sidebarOption.optionItem}</span></>}
 
                       {sidebarOption.subIcon && (
-                        <span className={`ml-auto transition-all  ease-in-out duration-300 ${sidebarToggle ? 'hidden' : 'flex'} ${openDropdown.subIndex === subIndex && openDropdown.index === index ? 'rotate-[90deg]' : 'rotate-[0deg]'}`}>
+                        <span className={`ml-auto transition-all  ease-in-out duration-500 ${sidebarToggle ? 'hidden' : 'flex'} ${openDropdown.subIndex === subIndex && openDropdown.index === index ? 'rotate-[90deg]' : 'rotate-[0deg]'}`}>
                           {sidebarOption.subIcon}
                         </span>
                       )}
-
+                      </div>
 
                       {sidebarOption.subInnerOptions && (
                         <div className={`overflow-hidden cursor-default transition-all ease-in-out duration-500 ${sidebarToggle ? 'hidden' : 'block'} ${openDropdown.subIndex === subIndex && openDropdown.index === index ? 'max-h-[1100px]' : 'max-h-0'}`}>
@@ -192,7 +184,7 @@ const Sidebar = ({ sidebarToggle, device }) => {
 
 
                               <NavLink to={innerItem.subPath ? innerItem.subPath : innerItem.subItem} key={innerIndex}
-                                onClick={device == 'sm' ? 'alsdh' : ''}  ><span className={`block w-full px-8 transition-all mt-3  ease-in-out duration-500 cursor-pointer`} >{innerItem.subItem} </span></NavLink>
+                              onClick={() => device === 'sm'  && closeSidebar()} ><span className={`block w-full px-8 transition-all mt-3  ease-in-out duration-500 cursor-pointer`} >{innerItem.subItem} </span></NavLink>
                               /* {innerItem.subPath ? <NavLink to={innerItem.subPath}> <span className={`block w-full px-8 transition-all mt-3  ease-in-out duration-500 cursor-pointer`} key={innerIndex}>{innerItem.subItem}</span></NavLink>: <><span className={`block w-full px-8 transition-all mt-3  ease-in-out duration-500 cursor-pointer`} key={innerIndex}>{innerItem.subItem}</span></>} */
 
                             )

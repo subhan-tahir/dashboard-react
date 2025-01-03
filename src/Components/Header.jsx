@@ -19,10 +19,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleHandler } from '../redux/reducers/SideBarToggleSlice';
 
 
-const Header = ({ btnToggle, btnToggle1, sidebarToggle }) => {
+const Header = ({ btnToggle }) => {
 
-    const [activedropdown, setActiveDropdown] = useState(false);
-    const [activedropdown1, setActiveDropdown1] = useState(false);
+    const [activeDropdown, setActiveDropdown] = useState(null);
+    // const [activedropdown1, setActiveDropdown1] = useState(false);
 
     let dropdownItems = [
         {
@@ -66,43 +66,11 @@ const Header = ({ btnToggle, btnToggle1, sidebarToggle }) => {
         },
 
     ]
-    // let headerItems = [
-    //     {
-    //         img: usaFlag,
-    //         text: 'English',
-    //         icon: <FaAngleDown />,
+   
+    let dropdownHandler = (dropdownId) => {
+        setActiveDropdown(activeDropdown === dropdownId ? null : dropdownId);
+    };
 
-    //     },
-    //     {
-    //         icon: <FaRegEnvelope />,
-    //     },
-    //     {
-    //         icon: <BsBell />,
-    //     },
-    //     {
-    //         icon: <IoSettingsOutline />,
-    //     },
-    //     {
-    //         icon: <IoMoonOutline />,
-    //     },
-    //     {
-    //         img: person,
-    //         text: 'Adams',
-    //         icon: <FaAngleDown />,
-
-    //     },
-    // ];
-
-
-
-    let dropdownHandler = () => {
-        setActiveDropdown(!activedropdown);
-
-    }
-    let dropdownHandler1 = () => {
-        setActiveDropdown1(!activedropdown1);
-
-    }
 //     const toggling = useSelector((state) => state.sidebarToggle.value);
 // //   useSelector((state) => state.reducers.value);
 //     const dispatch = useDispatch();
@@ -124,11 +92,11 @@ const Header = ({ btnToggle, btnToggle1, sidebarToggle }) => {
                         <ul className='flex items-center gap-3'>
 
 
-                            <li onClick={dropdownHandler} className='relative flex items-center cursor-pointer gap-2'>
+                            <li onClick={() => dropdownHandler("language")} className='relative flex items-center cursor-pointer gap-2'>
                                 <img src={usaFlag} alt="" className={'h-[12px]'} />
                                 <span className='sm:flex hidden'>English</span>
-                                <span className='text-[14px] sm:flex hidden'> <FaAngleDown /></span>
-                                <div className={`absolute top-[65px] right-0 py-2 bg-white  shadow-sm  flex flex-col gap-2 border  w-[172px] transition-transform duration-500 ${activedropdown ? 'translate-y-[-13px]' : 'hidden'}`}>
+                                <span className={`text-[14px] sm:flex hidden transition-all duration-500 ${activeDropdown === 'language' ? 'rotate-180' : ''}`}> <FaAngleDown /></span>
+                                <div className={`absolute top-[50px] right-0 py-2 bg-white  shadow-sm  flex flex-col gap-2 border translate-y-5  w-[172px] transition-all duration-500 ${activeDropdown === 'language' ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible'}`}>
                                     {
                                         dropdownItems.map((value, index) =>
 
@@ -146,11 +114,11 @@ const Header = ({ btnToggle, btnToggle1, sidebarToggle }) => {
                             <li className='text-[22px]'><IoSettingsOutline /></li>
 
 
-                            <li onClick={dropdownHandler1} className='flex items-center cursor-pointer gap-2'>
+                            <li  onClick={() => dropdownHandler("profile")} className='flex items-center cursor-pointer gap-2'>
                                 <img src={person} alt="" className='w-[32px] rounded-full' />
                                 <span className='sm:flex hidden'>Adams</span>
-                                <span className='text-[14px] sm:flex hidden'><FaAngleDown /></span>
-                                <div className={`absolute top-[90px] right-6 py-2 bg-white  shadow-sm  flex flex-col gap-2 border w-[170px] transition-transform duration-500 ${activedropdown1 ? 'translate-y-[-10px]' : 'hidden'}`}>
+                                <span className={`text-[14px] sm:flex hidden transition-all duration-500 ${activeDropdown === 'profile' ? 'rotate-[180deg]' : ''}`}><FaAngleDown /></span>
+                                <div className={`absolute top-[80px] right-6 py-2 bg-white  translate-y-5 shadow-sm  flex flex-col gap-2 border w-[170px] transition-all duration-500 ${activeDropdown === 'profile' ? 'translate-y-0 opacity-1' : 'opacity-0 invisible'}`}>
                                     {dropdownItems1.map((value, index) =>
                                         <li className='flex gap-3  items-center px-4 py-[5px]  hover:bg-[#e5e5e5]' key={index} >
                                             <span>{value.icon}</span>

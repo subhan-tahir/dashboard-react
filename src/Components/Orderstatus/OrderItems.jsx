@@ -55,7 +55,7 @@ const OrderItems = () => {
          <TimeLine title={'Audrey Tobey'} des={'Uploaded a photo "Error.jpg'} time={'14 hours ago'}  icon={<MdUpload/>}/>
          <TimeLine title={'You sold an item'} des={'Paul Burgess just purchased “Hyper - Admin Dashboard”!'} time={'16 hours ago'}  icon={<MdUpload/>}/>
          <TimeLine title={'Product on the Bootstrap Market'} des={' Dave Gamache added Admin Dashboard'} time={'22 hours ago'} icon={<IoMdAirplane />}/>
-         <TimeLine title={'Robert Delaney'} des={'Send you message "Are you there?"'} time={'2 days ago'} rotateIcon={'45'} icon={<FaMicrophone />}/>
+         <TimeLine title={'Robert Delaney'} des={'Send you message "Are you there?"'} time={'2 days ago'} rotateIcon={'45deg'} icon={<FaMicrophone />}/>
         
         </div>
       </div>

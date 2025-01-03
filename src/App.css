@@ -262,10 +262,9 @@ svg g.apexcharts-inner{
 .timeline-icon{
   position: relative;
 }
-.timeline-icon::after{
+.timeline-item .timeline-icon:after{
   content:'';
   position: absolute;
-  /* bottom: 0; */
   left:8px;
   background-color: #e5e5e5;
   width:2.3px;

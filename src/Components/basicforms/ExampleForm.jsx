@@ -1,6 +1,6 @@
-import Button from "../../Allfields/Button"
-import CheckboxField from "../../Allfields/CheckboxField"
-import HorizontalInputField from "../../Allfields/horizontalInputField"
+import Button from "/src/Allfields/Button"
+import CheckboxField from "/src/Allfields/CheckboxField"
+import HorizontalInputField from "/src/Allfields/horizontalInputField"
 
 const ExampleForm = ()=>{
     return(

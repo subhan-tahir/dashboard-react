@@ -1,5 +1,5 @@
 import React from "react";
-import HorizontalInputField from "../Allfields/horizontalInputField";
+import HorizontalInputField from "/src/Allfields/horizontalInputField";
 
 const HorizontalForm = () => {
   let formLabelData = [
